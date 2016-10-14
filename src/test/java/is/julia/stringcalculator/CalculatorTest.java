@@ -10,7 +10,12 @@ public class CalculatorTest {
 	}
 
 	@Test
-	public void testOneNumber() {
+	public void testSingleNumber() {
 		assertEquals(1, Calculator.add("1"));
+	}
+
+	@Test
+	public void testAnotherSingleNumber() {
+		assertEquals(2, Calculator.add("2"));
 	}
 }
