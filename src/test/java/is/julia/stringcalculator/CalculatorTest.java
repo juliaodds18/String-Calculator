@@ -109,8 +109,13 @@ public class CalculatorTest {
     	assertEquals(5, Calculator.add("1,1,1,1,1,1002"));
     }
 
-        @Test
+    @Test
     public void testManyLargeNumsAndManySmallNums() {
     	assertEquals(5, Calculator.add("1,1,1,1,1,1002,1002,4057,47165,5862,57109,18562,1057361"));
+    }
+
+    @Test
+    public void testDifferentDelimiter() {
+    	assertEquals(3, Calculator.add("//;\n1;2"));
     }
 }

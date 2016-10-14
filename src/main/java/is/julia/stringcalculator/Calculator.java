@@ -3,11 +3,12 @@ package is.julia.stringcalculator;
 public class Calculator {
 
 	public static int add(String text) {
+		if(text.substring(0, 2) == "//") return different(text);
 		if(text.equals("")) return 0;
 		if(text.contains("\n")) text = text.replace("\n", "");
 
 		if(text.contains(",")) {
-			String[] split = split(text);
+			String[] split = splitString(text);
 			return sum(split);
 		}
 
@@ -39,7 +40,7 @@ public class Calculator {
 		return Integer.parseInt(text);	
 	}
 
-	public static String[] split(String text) {
+	public static String[] splitString(String text) {
 		String[] parts = text.split(",");
 
 		return parts;
@@ -59,5 +60,18 @@ public class Calculator {
 		}
 
 		throw new IllegalArgumentException("Negatives not allowed: " + errors);
+	}
+
+	public static int different(String text) {
+
+		String delim = text.substring(2,3);
+		String betterText = text.substring(text.indexOf("\n")+1, text.length());
+
+		betterText = betterText.replace("\n", "");
+		betterText = betterText.replace(";", ",");
+		String[] betterSplit = splitString(text);
+
+		int sum = sum(betterSplit);
+		return sum;
 	}
 }
