@@ -98,4 +98,19 @@ public class CalculatorTest {
     public void testLargeNumsMultiple() {
     	assertEquals(0, Calculator.add("1001,1002,4057,47165,5862,57109,18562,1057361"));
     }
+
+    @Test
+    public void testLargeNumAndSmallNum() {
+    	assertEquals(1, Calculator.add("1,1002"));
+    }
+
+    @Test
+    public void testLargeNumAndManySmallNums() {
+    	assertEquals(5, Calculator.add("1,1,1,1,1,1002"));
+    }
+
+        @Test
+    public void testManyLargeNumsAndManySmallNums() {
+    	assertEquals(5, Calculator.add("1,1,1,1,1,1002,1002,4057,47165,5862,57109,18562,1057361"));
+    }
 }
