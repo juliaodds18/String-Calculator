@@ -26,6 +26,8 @@ public class Calculator {
 			int num = parse(t);
 			if(num < 0) 
 				minusNums(text);
+			if(num > 1000)
+				continue;
 	
 			result += num;
 		}
