@@ -3,7 +3,7 @@ package is.julia.stringcalculator;
 public class Calculator {
 
 	public static int add(String text) {
-		if(text.substring(0, 2) == "//") return different(text);
+		//if(text.substring(0, 2) == "//") return different(text);
 		if(text.equals("")) return 0;
 		if(text.contains("\n")) text = text.replace("\n", "");
 
@@ -61,11 +61,11 @@ public class Calculator {
 
 		throw new IllegalArgumentException("Negatives not allowed: " + errors);
 	}
-
+/*
 	public static int different(String text) {
 
 		String delim = text.substring(2,3);
-		String betterText = text.substring(text.indexOf("\n")+1, text.length());
+		String betterText = text.substring(text.indexOf("\n"), text.length());
 
 		betterText = betterText.replace("\n", "");
 		betterText = betterText.replace(";", ",");
@@ -74,4 +74,5 @@ public class Calculator {
 		int sum = sum(betterSplit);
 		return sum;
 	}
+	*/
 }
