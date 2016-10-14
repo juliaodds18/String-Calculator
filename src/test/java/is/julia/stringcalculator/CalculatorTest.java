@@ -43,4 +43,14 @@ public class CalculatorTest {
 	public void testTenNumbers() {
 		assertEquals(11, Calculator.add("1,1,1,1,1,1,1,1,1,2"));
 	}
+
+	@Test
+	public void testNewlineChar() {
+		assertEquals(3, Calculator.add("1,\n2"));
+	}
+
+	@Test
+	public void testNewlineCharMore() {
+		assertEquals(3, Calculator.add("1,\n1,\n1"));
+	}
 }
