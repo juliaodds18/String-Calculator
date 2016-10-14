@@ -14,6 +14,8 @@ public class Calculator {
 		int singleNum = parse(text);
 		if(singleNum < 0)
 			throw new IllegalArgumentException("Negatives not allowed: " + singleNum);
+		else if (singleNum > 1000) 
+			return 0;
 
 		return singleNum;
 	}
