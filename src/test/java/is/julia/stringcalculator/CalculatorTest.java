@@ -56,17 +56,7 @@ public class CalculatorTest {
 	public void testNewlineCharMore() {
 		assertEquals(3, Calculator.add("1,\n1,\n1"));
 	}
-/*
-	@Test
-	public void testOneNegativeNumber() {
-		assertEquals("Negatives not allowed: -1", Calculator.add("1,-1"));
-	}
 
-	@Test 
-	public void testTwoNegativeNumbers() {
-		assertEquals("Negatives not allowed: -1,-2", Calculator.add("-1,-2"));
-	}
-*/
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
@@ -77,11 +67,26 @@ public class CalculatorTest {
 
             Calculator.add("-1");
      }
-/*
+
     @Test
-    public void throwsIllegalArgumentExceptionMinus1() {
-            thrown.expect(IllegalArgumentException.class);
-            thrown.expectMessage("Negatives not allowed: -1");
-     }
-*/	
+    public void throwsIllegalArgumentExceptionTwoNumbers() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Negatives not allowed: -2,-3");
+
+        Calculator.add("-2,-3");
+    }
+
+     @Test
+    public void throwsIllegalArgumentExceptionMoreNumbers() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Negatives not allowed: -2,-3");
+            
+        Calculator.add("-2,-3,1,2,4");
+    }
+
+    @Test
+    public void testLargeNum() {
+    	assertEquals(0, Calculator.add("1001"));
+    }
+	
 }

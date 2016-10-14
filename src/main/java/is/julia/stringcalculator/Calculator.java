@@ -5,16 +5,29 @@ public class Calculator {
 	public static int add(String text) {
 		if(text.equals("")) return 0;
 		if(text.contains("\n")) text = text.replace("\n", "");
-		if(text.equals("-1")) throw new IllegalArgumentException("Negatives not allowed: -1");
-		if(text.contains(",")) return split(text);
 
+		if(text.contains(",")) {
+			String[] split = split(text);
+			return sum(split);
+		}
 
-		return sum(text);
+		int singleNum = parse(text);
+		if(singleNum < 0)
+			throw new IllegalArgumentException("Negatives not allowed: " + singleNum);
+
+		return singleNum;
 	}
 
-	public static int sum(String text) {
-
-		return parse(text);
+	public static int sum(String[] text) {
+		int result = 0;
+		for(String t : text) {
+			int num = parse(t);
+			if(num < 0) 
+				minusNums(text);
+	
+			result += num;
+		}
+		return result;
 	}
 
 
@@ -22,13 +35,25 @@ public class Calculator {
 		return Integer.parseInt(text);	
 	}
 
-	public static int split(String text) {
+	public static String[] split(String text) {
 		String[] parts = text.split(",");
-		int result = 0;
-		for(String p : parts) {
-			result += parse(p);
+
+		return parts;
+	}
+
+	public static void minusNums(String[] text) {
+		String errors = "";
+		int counter = 0; 
+		for(String t : text) {
+			if(parse(t) < 0) {
+				if(counter == 0) 
+					errors += t;
+				else
+					errors += "," + t;
+				counter++;
+			}
 		}
 
-		return result;
+		throw new IllegalArgumentException("Negatives not allowed: " + errors);
 	}
 }
