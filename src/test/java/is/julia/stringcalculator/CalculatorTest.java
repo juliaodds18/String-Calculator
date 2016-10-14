@@ -2,6 +2,9 @@ package is.julia.stringcalculator;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.Rule;
+//import org.hamcrest.Matcher;
 
 public class CalculatorTest {
 	@Test
@@ -53,4 +56,32 @@ public class CalculatorTest {
 	public void testNewlineCharMore() {
 		assertEquals(3, Calculator.add("1,\n1,\n1"));
 	}
+/*
+	@Test
+	public void testOneNegativeNumber() {
+		assertEquals("Negatives not allowed: -1", Calculator.add("1,-1"));
+	}
+
+	@Test 
+	public void testTwoNegativeNumbers() {
+		assertEquals("Negatives not allowed: -1,-2", Calculator.add("-1,-2"));
+	}
+*/
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
+	@Test
+    public void throwsIllegalArgumentExceptionMinus1() {
+            thrown.expect(IllegalArgumentException.class);
+            thrown.expectMessage("Negatives not allowed: -1");
+
+            Calculator.add("-1");
+     }
+/*
+    @Test
+    public void throwsIllegalArgumentExceptionMinus1() {
+            thrown.expect(IllegalArgumentException.class);
+            thrown.expectMessage("Negatives not allowed: -1");
+     }
+*/	
 }
